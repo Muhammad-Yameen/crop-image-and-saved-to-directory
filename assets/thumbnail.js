@@ -34,7 +34,7 @@ $(document).ready(function(){
 					let thumb = 'cropped/'+$('#image').val();
 					$.get('uploadThumbnails.php?x1='+size.x+'&y1='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img+'&thumb='+thumb,function(s){
 						$("#result_img").show();
-						$("#result_img").attr('src',s);
+						$("#result_img").attr('src',s).parent().addClass('thumbnail');
 						$('.report').html("<p>Old File  = "+img+"</p><p>New File  = "+s+"</p>").addClass('bgColor');
 						alertify.success('Thumbnail Created Successfully');
 					});
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 					$('.report').html('');
 					$("#result_img").show();
-					$("#result_img").attr('src',result[0].path);
+					$("#result_img").attr('src',result[0].path).parent().addClass('thumbnail');
 					alertify.error('Your original image is in its same condition');
 					$("#uploadForm").trigger("reset");
 
@@ -78,5 +78,9 @@ $(document).ready(function(){
 		$('#label').next('span').text(file)
 	});
 
-
+	$('.grid').masonry({
+	  // options
+	  itemSelector: '.grid-item',
+	  columnWidth: 5
+	});
 });

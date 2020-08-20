@@ -46,3 +46,21 @@ input#crop {
     margin-left: -7px;
     border-radius: 0 4px 4px 0;
 }
+
+.btn-thumbnail{
+    visibility: hidden;
+    position: absolute;
+    top: 40%;
+    left: 38%;
+    padding: 9px;
+    background: transparent;
+}
+
+.grid-item:hover > .btn-thumbnail{
+    visibility: visible;
+    font-weight: 400;
+    color: white;
+}
+.grid-item:hover > .btn-thumbnail:hover{
+    color: black;
+}
