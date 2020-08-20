@@ -1,0 +1,44 @@
+body {
+    width: 550px;
+    font-family: Arial;
+}
+
+.bgColor {
+    width: 100%;
+    height: 150px;
+    background-color: #fff4be;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.inputFile {
+    padding: 5px;
+    background-color: #FFFFFF;
+    border: #F0E8E0 1px solid;
+    border-radius: 4px;
+}
+
+.btnSubmit {
+    background-color: #696969;
+    padding: 5px 30px;
+    border: #696969 1px solid;
+    border-radius: 4px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+
+#uploadFormLayer {
+    padding: 20px;
+}
+
+input#crop {
+    padding: 5px 25px 5px 25px;
+    background: lightseagreen;
+    border: #485c61 1px solid;
+    color: #FFF;
+    visibility: hidden;
+}
+
+#cropped_img {
+    margin-top: 40px;
+}
