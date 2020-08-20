@@ -2,6 +2,8 @@
 require 'usefull.php';
 $useFul = new UseFullFunctions();
 $image= $_GET['img'];
+$useFul->makeDir(dirname($_GET['thumb']));
+
 list( $width,$height ) = getimagesize( $image );
 
 //Get the new coordinates to crop the image.
@@ -25,11 +27,12 @@ if ($imgratio>1){
 imagejpeg($thumb,$image,100); 
 */
 
+
 $im = $useFul->imagecreatefromfile($image);
 $dest = imagecreatetruecolor($w,$h);
 
 imagecopyresampled($dest,$im,0,0,$x1,$y1,$w,$h,$w,$h);
 imagejpeg($dest,$_GET['thumb'], 100);
-echo $_GET['thumb']; 
+echo $_GET['thumb'];
 exit();
 

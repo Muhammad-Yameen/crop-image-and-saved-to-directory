@@ -31,16 +31,18 @@ $(document).ready(function(){
 					let w = $('#w').val();
 					let h = $('#h').val();
 					let img = $('#image').val();
-					let thumb = 'crop/'+$('#image').val();
+					let thumb = 'cropped/'+$('#image').val();
 					$.get('uploadThumbnails.php?x1='+size.x+'&y1='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img+'&thumb='+thumb,function(s){
 						$("#result_img").show();
 						$("#result_img").attr('src',s);
+						$('.report').html("<p>Old File  = "+img+"</p><p>New File  = "+s+"</p>").addClass('bgColor');
 						alertify.success('Thumbnail Created Successfully');
 					});
 					$("#uploadForm").trigger("reset");
 
 				},()=>{
 
+					$('.report').html('');
 					$("#result_img").show();
 					$("#result_img").attr('src',result[0].path);
 					alertify.error('Your original image is in its same condition');
@@ -69,5 +71,12 @@ $(document).ready(function(){
 				});
 			}
 		});
-	})
+	});
+
+	$('#userImage').on('change',function(){
+		var file = $(this).prop('files')[0].name;
+		$('#label').next('span').text(file)
+	});
+
+
 });

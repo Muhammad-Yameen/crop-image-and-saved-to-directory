@@ -1,11 +1,9 @@
 body {
-    width: 550px;
     font-family: Arial;
 }
 
 .bgColor {
     width: 100%;
-    height: 150px;
     background-color: #fff4be;
     border-radius: 4px;
     margin-bottom: 30px;
@@ -13,8 +11,6 @@ body {
 
 .inputFile {
     padding: 5px;
-    background-color: #FFFFFF;
-    border: #F0E8E0 1px solid;
     border-radius: 4px;
 }
 
@@ -41,4 +37,12 @@ input#crop {
 
 #cropped_img {
     margin-top: 40px;
+}
+
+.filename{
+    width: 150px;
+    display: inline-block;
+    padding: 9px 0px 3px 10px;
+    margin-left: -7px;
+    border-radius: 0 4px 4px 0;
 }
