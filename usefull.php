@@ -133,6 +133,51 @@ class UseFullFunctions
         }
         return $result;
     }
+    function uploadFileMultiple($config,$isImage = false)
+    {
+        $field_name = $config['field_name'];
+        $dir        = $config['directory'];
+        $allowFiles = $config['allow_files'];
+        $maxsize    = $config['maxsize'];
+
+        $result = [];
+        try {
+            $files = $this->getMultiple_FILES();
+            foreach ($files[$field_name] as $key => $file) {
+                    if( $file && !empty( $file ) && $file['error'] == 0){
+                        $target_file    = $dir.'/'.basename($file['name']);
+                        $tempe_file     = $file['tmp_name'];
+                        $validation = $this->validateFile($allowFiles,$target_file);
+                        if($validation){
+                            $extension      = strtolower ( pathinfo ( $target_file , PATHINFO_EXTENSION ) );
+                            $size           = $file['size']; 
+                            if($size > $maxsize){
+                                $result[] = ['status'=>401,'path'=>'','message'=>'Size must be '.$maxsize.' Kb'];
+                                return $result;
+                            }
+                            $isCreate       = $this->makeDir($dir);
+                            if($isCreate){
+                                move_uploaded_file($tempe_file, $target_file);
+                                $result[] = ['status'=>200,'path'=>$target_file,'message'=>'SuccessFully Added to Directory'];
+                            }else{
+                                $result[] = ['status'=>401,'path'=>'','message'=>'Something went wrong.Directory Not Created'];
+                            }
+                        }else{
+                            $result[] = ['status'=>401,'path'=>'','message'=>'File type Not allowed'];
+                        }
+                        if( $isImage )
+                        {
+                            $dimenssions = @getimagesize($file["tmp_name"]);
+                        }           
+                }else{
+                        $result[] = ['status'=>400,'path'=>'','message'=>'File Not Found'];
+                }
+            }
+        } catch (Exception $e) {
+            $result[] = $e;
+        }
+        return $result;
+    }
     // image resource create from file 
     function imagecreatefromfile( $filename ) {
         if (!file_exists($filename)) {
@@ -156,5 +201,17 @@ class UseFullFunctions
                 throw new InvalidArgumentException('File "'.$filename.'" is not valid jpg, png or gif image.');
             break;
         }
+    }
+
+    function getMultiple_FILES() {
+    $_FILE = array();
+        foreach($_FILES as $name => $file) {
+            foreach($file as $property => $keys) {
+                foreach($keys as $key => $value) {
+                    $_FILE[$name][$key][$property] = $value;
+                }
+            }
+        }
+        return $_FILE;
     }
 }

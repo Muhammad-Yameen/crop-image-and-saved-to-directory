@@ -22,11 +22,11 @@ $useFul = new UseFullFunctions();
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">BytechSolution</a>
+      <a class="navbar-brand" href="./">BytechSolution</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="./">Home</a></li>
-      <li ><a href="files.php">Filemanager</a></li>
+      <li class="<?php echo $page == 'home' ? 'active':'' ?>"><a href="./">Home</a></li>
+      <li class="<?php echo $page == 'files' ? 'active':'' ?>"><a href="files.php">Filemanager</a></li>
     </ul>
   </div>
 </nav>

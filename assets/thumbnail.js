@@ -69,6 +69,8 @@ $(document).ready(function(){
 						
 					}
 				});
+			}else{
+				alertify.error(result[0].message) 
 			}
 		});
 	});
@@ -76,6 +78,15 @@ $(document).ready(function(){
 	$('#userImage').on('change',function(){
 		var file = $(this).prop('files')[0].name;
 		$('#label').next('span').text(file)
+	});
+	$('#images').on('change',function(){
+		var array = [];
+		var file = $(this).prop('files');
+		$.each(file,( index , value)=>{
+			array.push(value.name);
+		});
+
+		$('#labels').next('span').text(array.join())
 	});
 
 	$('.grid').masonry({
