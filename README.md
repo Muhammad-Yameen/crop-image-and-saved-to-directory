@@ -3,7 +3,7 @@
  **Features**
  * Single Image Upload
  * Multiple Image Upload
- * Crop
+ * Crop and save cropped image to folder
 
 
 ***All the best and enjoy***
