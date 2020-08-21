@@ -1,6 +1,6 @@
 # crop-image-and-saved-to-directory (beta)
 
-# Features
+ **Features**
  * Single Image Upload
  * Multiple Image Upload
  * Crop
