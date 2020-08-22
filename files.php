@@ -67,9 +67,9 @@ endif;?>
 		alertify.alert().setContent(path).show();
 	});
 	$('.delete-thumbnail').on('click',function(){
-			var path = $(this).data('path');
-			var index = $(this).data('index');
-		alertify.confirm('Confirmirmation', 'are you sure want to delete?', ()=>{ 
+		var path = $(this).data('path');
+		var index = $(this).data('index');
+		alertify.confirm('Confirmation', 'are you sure want to delete?', ()=>{ 
 			var formData = new FormData();
 			formData.append('path',path);
 			ajax_Request('POST',"delete_file.php",formData);
@@ -107,7 +107,6 @@ endif;?>
 		          }
 		      }
 		  }
-		  console.log(filter_options);
 		  if(checkboxes){
 			$('#bluck_delete_row').addClass('show');
 		  }
@@ -115,6 +114,16 @@ endif;?>
 		  	$('#bluck_delete_row').removeClass('show');
 		  }
 
+	});
+	$('#bluck-delete').on('click',function(){
+		alertify.confirm('Confirmation', 'are you sure want to delete?', ()=>{ 
+			var formData = new FormData();
+			formData.append('files' , filter_options);
+			const data = ajax_Request('POST','bulk_delete_file.php',formData);
+			alertify.success(data);
+		},()=> {
+			alertify.error('cancel');
+		});
 	});
 	 $(function() {
   $('.lazy').Lazy({

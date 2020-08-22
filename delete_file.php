@@ -1,7 +1,6 @@
 <?php 
 
-if(isset($_GET)){
-	echo $_POST['path'];
+if(isset($_POST)){
 	$result = @unlink($_POST['path']);
 	if( $result ) {
 		echo "success";

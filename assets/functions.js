@@ -6,8 +6,11 @@ function ajax_Request(method='GET',action,formData){
 		cache : false,
 		contentType:false,
 		processData: false,
-
-	}).done(function( response ) {
-		return response;
+		success: ( result ) =>{
+			return result;
+		},
+		error:(error)=>{
+			return error;
+		}
 	});
 }

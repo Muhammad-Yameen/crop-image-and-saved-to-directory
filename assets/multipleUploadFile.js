@@ -10,6 +10,5 @@ $(document).ready(function(){
 		var files = $("#images").prop("files");
 		var formData = new FormData($(this)[0]);
 		var response =  ajax_Request('POST',"multipleUploadForm.php",formData);
-		console.log(response);
 	});
 });
